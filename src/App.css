@@ -26,3 +26,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+tr {
+  border: 3px solid black;
+}
+
+th {
+  border: 3px solid black;
+}
+
+td {
+  border: 3px solid black;
+}
