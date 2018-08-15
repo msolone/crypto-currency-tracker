@@ -16,32 +16,38 @@ class CurrencyList extends Component {
     fetch('https://api.coinmarketcap.com/v2/ticker/?limit=20')
     .then(resp => resp.json())
     .then(currencyData => {
-      console.log(currencyData)
+      console.log(currencyData.data)
       this.setState({
-        coins: Object.values(currencyData.data)
-        
+        coins: Object.values(currencyData.data)       
       })
     })
-    }, 5000)
+    }, 10000)
 
   }
+
+  // componentDidUpdate(prevState) {
+  //   this.state.coins.map(coin => {
+  //   if (coin.price > prevState.price) {
+  //     document.querySelector('.price').style.background = 'green'
+  //   } else if (coin.price < prevState.price) {
+  //     document.querySelector('.price').style.background = 'red'
+  //   } else {
+  //     document.querySelector('.price').style.background = 'yellow'
+  //   }})
+  // }
+
   render() {
     return (
-        // mapping over the coins in setState, each will create a Currency
        this.state.coins.map((coin, idx) => {
-         console.log(coin.quotes)
           return ( <Currency 
               name = {coin.name}
-              symbol = {coin.symbol}
+              symbol = {coin.id}
               price = {coin.quotes.USD.price.toFixed(2)}
               rank = {coin.rank}
               change24h = {coin.quotes.USD.percent_change_24h} 
-              iconName = {coin.id}
               key = {idx} />       
         )})
              )
-           
-     
     }
   }
 
